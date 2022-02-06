@@ -1,29 +1,26 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { NativeBaseProvider } from 'native-base';
+import { NativeBaseProvider, StatusBar } from 'native-base';
 import React from 'react';
-import {
-  LogBox,
-  StatusBar,
-  useColorScheme,
-} from 'react-native';
+import { LogBox } from 'react-native';
+import { Provider } from 'react-redux';
 import { RootNavigation } from './navigation';
+import { appStore } from './store';
 
 LogBox.ignoreLogs([
-  "[react-native-gesture-handler] Seems like you\'re using an old API with gesture components, check out new Gestures system!",
+  "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
 ]);
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
   return (
-    <NativeBaseProvider>
-      <NavigationContainer>
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <RootNavigation />
-      </NavigationContainer>
-    </NativeBaseProvider>
+    <Provider store={appStore}>
+      <NativeBaseProvider>
+        <NavigationContainer>
+          <StatusBar barStyle="default" />
+          <RootNavigation />
+        </NavigationContainer>
+      </NativeBaseProvider>
+    </Provider>
   );
 };
-
-
 
 export default App;

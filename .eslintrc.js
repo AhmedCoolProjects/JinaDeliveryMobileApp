@@ -10,7 +10,17 @@ module.exports = {
         '@typescript-eslint/no-shadow': ['error'],
         'no-shadow': 'off',
         'no-undef': 'off',
+        'no-unused-vars': 'off',
       },
     },
   ],
+  rules: {
+    'react-native/no-inline-styles': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        'no-inline-styles': false,
+      },
+    ],
+  },
 };
